@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body, html {
+            font-family: Arial, Helvetica, sans-serif;
+            height: 100%;
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+        .box {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            align-items: center;
+            box-shadow: 1px 1px 15px 3px green;
+            border-radius: 15px;
+            background-color: rgb(231, 231, 231);
+            min-height: 300px;
+            min-width: 300px;
+        }
+        .btn-success {
+            border: 0px;
+            border-radius: 5px;
+            background-color: #08d601;
+            transition: background-color 0.5s ease;
+        }
+
+        .btn-success:hover {
+            cursor: pointer;
+            background-color: #06a800;
+        }
+    </style>
+    <script>
+        
+        
+    function a() {
+        const aaa = document.getElementById("tcp");
+        navigator.clipboard.writeText(aaa.textContent)
+        alert("jejekek")
+    }
+        
+    </script>
+</head>
+<body>
+    <div style="text-align: center;">
+        <div class="box">
+            <br>
+            <img src="/images/success.gif" alt="success" width="150px">
+            <b style="font-size: 40px;">Başarılı!</b>
+            <b>Başarıyla kayıt oldunuz!</b>
+            <br>
+            <span id="tcp"><%= tcp %></span>
+            <button class="btn-success" onclick="a()">Kopyala!</button>
+        </div>
+        
+    </div>
+</body>
+</html>

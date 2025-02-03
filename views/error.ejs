@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Hata!</title>
     <style>
-        body, html {
+        body,
+        html {
             font-family: Arial, Helvetica, sans-serif;
             height: 100%;
             display: flex;
@@ -14,12 +16,13 @@
             align-items: center;
             margin: 0;
         }
+
         .box {
             display: flex;
             flex-direction: column;
             text-align: center;
             align-items: center;
-            box-shadow: 1px 1px 15px 3px green;
+            box-shadow: 1px 1px 15px 3px rgb(128, 0, 0);
             border-radius: 15px;
             background-color: rgb(231, 231, 231);
             min-height: 300px;
@@ -27,16 +30,15 @@
         }
     </style>
 </head>
+
 <body>
-    <div style="text-align: center;">
-        <div class="box">
-            <br>
-            <img src="/images/success.gif" alt="success" width="150px">
-            <b style="font-size: 40px;">Başarılı!</b>
-            <b>Başarıyla kayıt oldunuz!</b>
-            <br>
-            <span id="tcp"><%= tcp %></span>
-        </div>
+    <div class="box">
+        <img src="/images/error.png" alt="error" width="150px">
+        <span style="font-size: 40px;">Hata</span>
+        <br>
+        <b>Sebep;</b>
+        <%= reason %> 
+        <br><br><b>Lütfen daha sonra tekrar deneyiniz.</b>
         
     </div>
 </body>

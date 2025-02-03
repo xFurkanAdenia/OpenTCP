@@ -24,7 +24,7 @@ function userCheck(req, res, next) {
     const users = JSON.parse(fs.readFileSync("users.json", { encoding: "utf-8" }))
 
     if (users[username]) {
-        if (users[username]["password"] != password) return res.render("incorrectpass")
+        if (users[username]["password"] != password) return res.render("error",{ reason: "Hatalı Şifre!" })
         next()
     } else {
         res.render("accNotFound", {

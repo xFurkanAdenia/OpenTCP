@@ -27,14 +27,12 @@ function userCheck(req, res, next) {
         if (users[username]["password"] != password) return res.render("error",{ reason: "Hatalı Şifre!" })
         next()
     } else {
-        res.render("accNotFound", {
-            username
-        })
+        res.render("error",{ reason: username + " adında bir kullanıcı bulunamadı!" })
     }
 }
 
 app.get("/images/:path", (req, res) => {
-    return res.sendFile(path.join("assets", req.params.path), {root: __dirname})
+    return res.sendFile(path.join("assets", req.params.path), {root: process.cwd()})
 })
 
 app.get("/acc/create", userCheck, (req, res) => {
@@ -48,7 +46,7 @@ app.get("/tcp/get", userCheck, async (req, res) => {
         addr: 3389
     }).then((val) => {
         res.render("success", {
-            tcp: val
+            tcp: val.substring(6, val.length)
         }); active = true
     }).catch((err) => {
         res.send(err.toString())
@@ -56,6 +54,12 @@ app.get("/tcp/get", userCheck, async (req, res) => {
 
 })
 
+
 app.listen(3000, () => {
     console.log("Aktif 3000")
+    ngrok.connect({
+        proto: "http",
+        hostname: "noted-fast-mallard.ngrok-free.app",
+        addr:3000
+    })
 })

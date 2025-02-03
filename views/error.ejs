@@ -27,8 +27,28 @@
             background-color: rgb(231, 231, 231);
             min-height: 300px;
             min-width: 300px;
+            
         }
     </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module">
+        document.getElementById("retry").addEventListener("click", () => {
+            Swal.fire({
+                title: 'Tamamdır!',
+                text: 'Tekrar Deneniyor...',
+                confirmButtonText: 'Cool',
+                async didOpen() {
+                    Swal.showLoading()
+                   
+                }
+            })
+        
+            setTimeout(() => window.location.href = document.URL, 1000)
+            
+        })
+    </script>
 </head>
 
 <body>
@@ -37,9 +57,12 @@
         <span style="font-size: 40px;">Hata</span>
         <br>
         <b>Sebep;</b>
-        <%= reason %> 
-        <br><br><b>Lütfen daha sonra tekrar deneyiniz.</b>
-        
+        <span style="margin: 10px;"><%= reason %></span>
+            <br><br><b>Lütfen daha sonra tekrar deneyiniz.</b>
+            <br>
+            <button class="btn btn-success" id="retry">Tekrar Dene!</button>
+            <br>
     </div>
 </body>
+
 </html>

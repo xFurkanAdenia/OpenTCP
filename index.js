@@ -40,14 +40,15 @@ app.get("/acc/create", userCheck, (req, res) => {
 })
 
 app.get("/tcp/get", userCheck, async (req, res) => {
-    if (active) await ngrok.kill()
+    if (active) await ngrok.disconnect(tcpUrl)
     ngrok.connect({
         proto: "tcp",
         addr: 3389
     }).then((val) => {
         res.render("success", {
-            tcp: val.substring(6, val.length)
-        }); active = true
+            tcp: val.substring(6, val.length),
+            rdpUsername: "furka"
+        }); active = true; tcpUrl = val
     }).catch((err) => {
         res.send(err.toString())
     })

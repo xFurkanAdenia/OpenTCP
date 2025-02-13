@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        body, html {
+        body,
+        html {
             font-family: Arial, Helvetica, sans-serif;
             height: 100%;
             display: flex;
@@ -14,6 +16,7 @@
             align-items: center;
             margin: 0;
         }
+
         .box {
             display: flex;
             flex-direction: column;
@@ -25,19 +28,55 @@
             min-height: 300px;
             min-width: 300px;
         }
+
+        #tcp:hover {
+            cursor: pointer;
+        }
     </style>
+    <script type="module">
+        function selectText(nodeId) {
+            const node = document.getElementById(nodeId);
+
+            if (document.body.createTextRange) {
+                const range = document.body.createTextRange();
+                range.moveToElementText(node);
+                range.select();
+            } else if (window.getSelection) {
+                const selection = window.getSelection();
+                const range = document.createRange();
+                range.selectNodeContents(node);
+                selection.removeAllRanges();
+                selection.addRange(range);
+            } else {
+                console.warn("Could not select text in node: Unsupported browser.");
+            }
+        }
+
+        document.getElementById("tcp").addEventListener("click", ()=> selectText("tcp"));
+
+    </script>
 </head>
+
 <body>
     <div style="text-align: center;">
         <div class="box">
             <br>
             <img src="/images/success.gif" alt="success" width="150px">
             <b style="font-size: 40px;">Başarılı!</b>
-            <b>Başarıyla kayıt oldunuz!</b>
+            <b>Başarıyla giriş yaptınız!</b>
             <br>
-            <span id="tcp"><%= tcp %></span>
+            <div style="text-align: left;">
+                <b style="margin-left: 10px;">Uzak Masaüstü IP:</b><span id="tcp">
+                    <%= tcp %>
+                </span><br>
+                <b style="margin: 10px;">Kullanıcı Adı:</b>
+                <%= rdpUsername %>
+
+            </div>
+
         </div>
-        
+
     </div>
 </body>
+
 </html>

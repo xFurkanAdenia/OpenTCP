@@ -4,7 +4,7 @@ const fs = require("fs");
 const path = require("path");
 
 const app = require("express")();
-ngrok.authtoken("2h6e4iiVj0qyScz8QybYIiX5fOZ_43g1iYeyAGhxsgwenA8at")
+ngrok.authtoken("YOUR-NGROK-TOKEN")
 app.set("view engine", "ejs")
 
 const adminKey = "ALcqnNG2YV78cML"
@@ -35,9 +35,6 @@ app.get("/images/:path", (req, res) => {
     return res.sendFile(path.join("assets", req.params.path), {root: process.cwd()})
 })
 
-app.get("/acc/create", userCheck, (req, res) => {
-
-})
 
 app.get("/tcp/get", userCheck, async (req, res) => {
     if (active) await ngrok.disconnect(tcpUrl)
